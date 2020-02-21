@@ -6,6 +6,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::redirect('/', '/admin/expenses');
+
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');
@@ -37,4 +38,38 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Expensereports
     Route::delete('expense-reports/destroy', 'ExpenseReportController@massDestroy')->name('expense-reports.massDestroy');
     Route::resource('expense-reports', 'ExpenseReportController');
+
+    //    projects
+    Route::delete('projects/destroy', 'ProjectController@massDestroy')->name('expense-reports.massDestroy');
+    Route::resource('projects', 'ProjectController');
+    //    projectsExpenseController
+    Route::delete('project-expense-category/destroy', 'ProjectExpenseCategoryController@massDestroy')->name('expense-reports.massDestroy');
+    Route::resource('project-expense-category', 'ProjectExpenseCategoryController');
+
+    //    projectsExpense
+    Route::delete('project-expense/destroy', 'ProjectExpenseController@massDestroy')->name('expense-reports.massDestroy');
+    Route::resource('project-expense', 'ProjectExpenseController');
+
+        //projectsReceivedAmount
+    Route::delete('project-received/destroy', 'ProjectReceivedAmountController@massDestroy')->name('expense-reports.massDestroy');
+    Route::resource('project-received', 'ProjectReceivedAmountController');
+
+    //   Labourer
+    Route::delete('labourer/destroy', 'LabourerController@massDestroy')->name('expense-reports.massDestroy');
+    Route::resource('labourer', 'LabourerController');
+
+    //   Contractor
+    Route::delete('contractor/destroy', 'ContracterController@massDestroy')->name('expense-reports.massDestroy');
+    Route::resource('contractor', 'ContracterController');
+
+    //    projectsVoucher
+//    Route::delete('invoice-voucher/destroy', 'PaymentVoucherController@massDestroy')->name('expense-reports.massDestroy');
+//    Route::resource('invoice-voucher', 'PaymentVoucherController');
+//    Route::get('invoice-voucher-print/{id}', 'PaymentVoucherController@print')->name('invoice-voucher-print');
+
+//    Search
+    Route::resource('search', 'SearchController');
+    Route::get('/findCatName','SearchController@findCatName');
+    Route::get('/findExpName','SearchController@findExpName');
+
 });
