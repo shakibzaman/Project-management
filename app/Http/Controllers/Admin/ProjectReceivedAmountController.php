@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Project;
+use App\ProjectAmountReceive;
+use App\Contracter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class ProjectReceivedAmountController extends Controller
 {
@@ -14,7 +18,8 @@ class ProjectReceivedAmountController extends Controller
      */
     public function index()
     {
-        //
+        $receiveds=ProjectAmountReceive::with('projectName','userName','contractor')->get();
+        return view('admin.projectReceivedAmount.index',compact('receiveds'));
     }
 
     /**
@@ -24,29 +29,31 @@ class ProjectReceivedAmountController extends Controller
      */
     public function create()
     {
-        //
+        $projects=Project::all()->pluck('name','id')->prepend(trans('global.pleaseSelect'),'');;
+        $contracts=Contracter::all()->pluck('name','id')->prepend(trans('global.pleaseSelect'),'');;
+        return view('admin.projectReceivedAmount.create',compact('projects','contracts'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $received=new ProjectAmountReceive();
+        $received->pro_id=$request->pro_id;
+        $received->entry_date=$request->entry_date;
+        $received->amount=$request->amount;
+        $received->bank_name=$request->bank_name;
+        $received->cheque=$request->cheque;
+        $received->note=$request->note;
+        $received->paid_by=$request->paid_by;
+        $received->received=Auth::user()->id;
+        $received->save();
+        return redirect()->route('admin.project-received.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $received=ProjectAmountReceive::with('projectName','userName','contractor')->find($id);
+        return view('admin.projectReceivedAmount.show',compact('received'));
     }
 
     /**

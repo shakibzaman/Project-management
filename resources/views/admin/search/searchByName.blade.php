@@ -16,8 +16,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="expense_category">Category</label>
-                <select name="cat_id" id="cat_id" class="form-control  category">
+                <label for="laboure_name">Laboure</label>
+                <select name="received_by" id="received_by" class="form-control  category">
                     <option value="">Select Previous</option>
                 </select>
             </div>
@@ -43,7 +43,7 @@
                             {{ trans('cruds.projectExpense.fields.amount') }}
                         </th>
                         <th>
-                            {{ trans('cruds.projectExpense.fields.received') }}
+                            Expense Category
                         </th>
                     </tr>
                     </thead>
@@ -67,21 +67,21 @@
                 var pro_id=$(this).val();
                 var div=$(this).parent();
                 var op="";
-                //console.log(pro_id);
+                console.log(pro_id);
                 $.ajax({
                     type:'get',
-                    url:'{!! URL::to('admin/findCatName') !!}',
+                    url:'{!! URL::to('admin/findUserName') !!}',
                     data:{'id':pro_id},
                     success:function (data) {
                         console.log('success');
-                        // console.log(data);
+                         //console.log(data);
                         // console.log(data.length);
                         op+='<option value ="" selected disabled>Chose</option>';
                         for(var i=0;i<data.length;i++){
-                            op+='<option value ="'+data[i].cat_id+'">'+data[i].name+'</option>';
+                            op+='<option value ="'+data[i].received_by+'">'+data[i].name+'</option>';
                         }
-                        $('#cat_id').html("");
-                        $('#cat_id').append(op);
+                        $('#received_by').html("");
+                        $('#received_by').append(op);
 
                     },
                     error:function () {
@@ -90,42 +90,42 @@
                 });
             });
 
-            $(document).on('change','#cat_id',function () {
-                var exp_id = $(this).val(),
+            $(document).on('change','#received_by',function () {
+                var lab_id = $('#received_by').val(),
                     proj_id = $('#pro_id').val(),
                     div=$(this).parent();
-                console.log(proj_id);
+                console.log(lab_id);
                 var tr="";
                 $.ajax({
-				type:'get',
-				url:'{!!URL::to('admin/findExpName')!!}',
-				data:{'id':exp_id, 'project_id':proj_id},
-				dataType:'json',//return data will be json
-				success:function(data){
-                    //alert( data );
-                    console.log( data );
-                    //var decodedData = JSON.parse(data);
+                    type:'get',
+                    url:'{!!URL::to('admin/findLabExpName')!!}',
+                    data:{'id':lab_id, 'project_id':proj_id},
+                    dataType:'json',//return data will be json
+                    success:function(data){
+                        //alert( data );
+                        //console.log( data );
+                        //var decodedData = JSON.parse(data);
 
-                    //console.log( decodedData );
-                    $.each(data, function(i, v){
-                        //console.log( i);
-                        //console.log( v);
-                        tr+='<tr>';
-                        tr+= '<td>'+ v.entry_date +'</td>';
-                        tr+= '<td>'+ v.amount +'</td>';
-                        tr+= '<td>'+ v.laboures['name'] +'</td>';
-                        tr+= '</tr>';
-                    });
+                        //console.log( decodedData );
+                        $.each(data, function(i, v){
+                            //console.log( i);
+                            //console.log( v);
+                            tr+='<tr>';
+                            tr+= '<td>'+ v.entry_date +'</td>';
+                            tr+= '<td>'+ v.amount +'</td>';
+                            tr+= '<td>'+ v.cat_name['name'] +'</td>';
+                            tr+= '</tr>';
+                        });
 
-                    // }
-                    //console.log(tr);
-                    $('.datatable-Expense tbody').html('');
-                    $('.datatable-Expense tbody').append(tr);
-				},
-				error:function(){
+                        // }
+                        console.log(tr);
+                        $('.datatable-Expense tbody').html('');
+                        $('.datatable-Expense tbody').append(tr);
+                    },
+                    error:function(){
 
-				}
-			});
+                    }
+                });
 
             });
 

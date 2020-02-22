@@ -52,8 +52,6 @@ class SearchController extends Controller
     public function findExpName(Request $id){
         $postID = $_GET['id'];
         $projecID = $_GET['project_id'];
-        //$postId2=$_GET['id2'];
-        //return $postID;
         $data=ProjectExpense::with('laboures')->where('cat_id','=',$postID)->where('pro_id', '=', $projecID)->get();
         return response()->json($data);
     }

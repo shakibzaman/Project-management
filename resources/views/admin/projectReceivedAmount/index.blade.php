@@ -49,20 +49,20 @@
 
                             </td>
                             <td>
-                                {{ $received->id ?? '' }}
+                                {{ $received->id }}
                             </td>
                             <td>
-                                {{ $received->projectName->name ?? '' }}
+                                {{ $received->projectName->name  }}
                             </td>
 
                             <td>
-                                {{ $received->entry_date->format('l j F Y') ?? '' }}
+                                {{ $received->entry_date }}
                             </td>
                             <td>
-                                {{ $received->amount ?? '' }}
+                                {{ $received->amount  }}
                             </td>
                             <td>
-                                {{ $received->contractor->name ?? '' }}
+                                {{ $received->contractor->name  }}
                             </td>
                             <td>
                                 @can('expense_show')

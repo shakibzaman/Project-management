@@ -108,7 +108,6 @@
                                 <th>
                                     {{ trans('cruds.projectExpense.fields.amount') }}
                                 </th>
-                                <th>Received</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -122,11 +121,7 @@
                                     </td>
                                     <td>
                                         {{ $cost->amount }}
-                                    </td>
-                                    <td>
-                                        {{$cost->received_by}}
-                                    </td>
-                                </tr>
+
                             @endforeach
 
                             </tbody>
@@ -167,7 +162,7 @@
                             @foreach($project->received as $cost)
                                 <tr>
                                     <td>
-                                        {{ $cost->entry_date->format('l j F Y') }}
+                                        {{ $cost->entry_date }}
                                     </td>
 
                                     <td>

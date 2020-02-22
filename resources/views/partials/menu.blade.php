@@ -220,6 +220,14 @@
                     Search
                 </a>
             </li>
+                <li class="nav-item">
+                    <a href="{{ route("admin.search-by-name.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                        <i class="fa-fw fas fa-unlock-alt nav-icon">
+
+                        </i>
+                        Search By Name
+                    </a>
+                </li>
             <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <i class="nav-icon fas fa-fw fa-sign-out-alt">

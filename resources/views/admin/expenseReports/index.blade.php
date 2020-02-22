@@ -77,12 +77,18 @@
                     <tr>
                         <th>{{ trans('cruds.expenseReport.reports.expenseByCategory') }}</th>
                         <th>{{ number_format($expensesTotal, 2) }}</th>
+
                     </tr>
                     @foreach($expensesSummary as $inc)
                         <tr>
                             <th>{{ $inc['name'] }}</th>
                             <td>{{ number_format($inc['amount'], 2) }}</td>
                         </tr>
+                        <tr>
+                            <th>Project Cost</th>
+                            <td>{{$projectExpensesTotal}}</td>
+                        </tr>
+
                     @endforeach
                 </table>
             </div>

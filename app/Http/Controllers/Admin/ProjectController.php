@@ -41,17 +41,10 @@ class ProjectController extends Controller
             ->select('project_expense_categories.*','project_expenses.*')
             ->where('projects.id','=',$id)
             ->get();
-        //return $projectCat;
-
-//        $total=$projectCat;
-//        return $total;
-//        $laboures=Project::with('receivedBy')->find($id);
-
-
        $expensesTotal   = $project->expense()->sum('amount');
        $receivedTotal   = $project->received()->sum('amount');
        $profit          = $receivedTotal-$expensesTotal;
-        return view('admin.projects.show',compact('project','expensesTotal','receivedTotal','profit','projectCat'));
+       return view('admin.projects.show',compact('project','expensesTotal','receivedTotal','profit','projectCat'));
     }
 
     public function edit($id)

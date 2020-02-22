@@ -31,7 +31,7 @@
                             {{ trans('cruds.projectReceived.fields.entry_date') }}
                         </th>
                         <td>
-                            {{ $received->entry_date->format('l j F Y') }}
+                            {{ $received->entry_date }}
                         </td>
                     </tr>
                     <tr>
@@ -63,7 +63,7 @@
                             {{ trans('cruds.projectReceived.fields.paid') }}
                         </th>
                         <td>
-                            {{ $received->paid_by}}
+                            {{ $received->contractor->name}}
                         </td>
                     </tr>
                     <tr>

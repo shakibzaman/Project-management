@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Expense;
 use App\Http\Controllers\Controller;
 use App\Income;
+use App\ProjectExpense;
 use Carbon\Carbon;
 
 class ExpenseReportController extends Controller
@@ -24,8 +25,10 @@ class ExpenseReportController extends Controller
 
         $incomes = Income::with('income_category')
             ->whereBetween('entry_date', [$from, $to]);
-
-        $expensesTotal   = $expenses->sum('amount');
+        $projectCost=ProjectExpense::with('catName')
+            ->whereBetween('entry_date',[$from, $to]);
+        $projectExpensesTotal   = $projectCost->sum('amount');
+        $expensesTotal   = $expenses->sum('amount')+$projectExpensesTotal;
         $incomesTotal    = $incomes->sum('amount');
         $groupedExpenses = $expenses->whereNotNull('expense_category_id')->orderBy('amount', 'desc')->get()->groupBy('expense_category_id');
         $groupedIncomes  = $incomes->whereNotNull('income_category_id')->orderBy('amount', 'desc')->get()->groupBy('income_category_id');
@@ -66,7 +69,8 @@ class ExpenseReportController extends Controller
             'incomesSummary',
             'expensesTotal',
             'incomesTotal',
-            'profit'
+            'profit',
+            'projectExpensesTotal'
         ));
     }
 }
