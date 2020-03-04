@@ -33,7 +33,8 @@ class ProjectController extends Controller
 
     public function show($id)
     {
-        $project=Project::with('expense','received')->find($id);
+        $project=Project::with('expense','received','contractor')->find($id);
+//        return $project;
         $projectCat=DB::table('laboures')
             ->join('project_expenses','laboures.id','=','project_expenses.received_by')
             ->join('projects','projects.id','=','project_expenses.pro_id')

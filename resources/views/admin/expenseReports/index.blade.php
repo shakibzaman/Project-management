@@ -43,6 +43,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col">
+
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>{{ trans('cruds.expenseReport.reports.income') }}</th>
@@ -53,7 +54,8 @@
                         <td>{{ number_format($expensesTotal, 2) }}</td>
                     </tr>
                     <tr>
-                        <th>{{ trans('cruds.expenseReport.reports.profit') }}</th>
+{{--                        <th>{{ trans('cruds.expenseReport.reports.profit') }}</th>--}}
+                        <th>Balance</th>
                         <td>{{ number_format($profit, 2) }}</td>
                     </tr>
                 </table>
@@ -68,8 +70,15 @@
                         <tr>
                             <th>{{ $inc['name'] }}</th>
                             <td>{{ number_format($inc['amount'], 2) }}</td>
+
                         </tr>
+
                     @endforeach
+                    <tr>
+                        <th>Monthly Received</th>
+                        <td>{{$receivedTotal}}</td>
+                    </tr>
+
                 </table>
             </div>
             <div class="col">

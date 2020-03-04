@@ -67,7 +67,7 @@
                                 {{ $expense->amount ?? '' }}
                             </td>
                             <td>
-                                {{ $expense->received_by ?? '' }}
+                                {{ $expense->laboures->name ?? '' }}
                             </td>
                             <td>
                                 @can('expense_show')

@@ -36,5 +36,9 @@ class Project extends Model
     public function received(){
         return $this->hasMany(ProjectAmountReceive::class,'pro_id');
     }
+    public function contractor(){
+        return $this->hasMany(Contracter::class,'id');
+    }
+
 
 }

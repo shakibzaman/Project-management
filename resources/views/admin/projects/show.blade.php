@@ -169,7 +169,7 @@
                                         <a href="{{route('admin.project-received.show',$cost->id)}}"> {{$cost->amount}}</a>
                                     </td>
                                     <td>
-                                        {{ $cost->paid_by }}
+                                        {{ $cost->contractor->name }}
                                     </td>
                                 </tr>
                             @endforeach

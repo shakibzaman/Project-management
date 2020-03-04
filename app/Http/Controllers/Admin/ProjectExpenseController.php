@@ -15,7 +15,7 @@ class ProjectExpenseController extends Controller
 
     public function index()
     {
-        $expenses=ProjectExpense::with('projectName','catName')->get();
+        $expenses=ProjectExpense::with('projectName','catName','laboures')->get();
         return view('admin.projectExpense.index',compact('expenses'));
     }
 

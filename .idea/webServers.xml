@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="77fd9ee6-fcae-485e-9df3-06beedaba71d" name="something" url="https://innovativesbd.com:2083/">
+        <fileTransfer host="23.92.74.62" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" showHiddenFiles="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="81b573b3-712e-416a-9176-c5f6ca5f5f22" name="con2" url="http://23.92.74.62">
+        <fileTransfer host="23.92.74.62" port="21" rootFolder="/public_html/erp">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
